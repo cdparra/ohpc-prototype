@@ -46,6 +46,11 @@ return (
               <RefreshCw className="w-4 h-4 mr-2" />
               Actualizar
             </Button>
+            <Link href="/analytics" passHref>
+              <Button variant="outline" size="sm">
+                Análisis detallado
+              </Button>
+            </Link>
             <Button size="sm">
               <Download className="w-4 h-4 mr-2" />
               Exportar
