@@ -3,23 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import {
-  TrendingUp,
-  TrendingDown,
-  AlertTriangle,
-  BarChart3,
-  LineChart,
-  PieChart,
-  Calendar,
-  Download,
-  Settings,
-  Brain,
-  Globe,
-  Zap,
-  FileText,
-  Target,
-  Activity,
-} from "lucide-react"
+import { TrendingUp, TrendingDown, AlertTriangle, BarChart3, LineChart, PieChart, Calendar, Download, Settings, Brain, Globe, Zap, FileText, Target, Activity, Package } from 'lucide-react'
 import Link from "next/link"
 
 const priceAlerts = [
@@ -161,13 +145,14 @@ export default function AnalyticsPage() {
         </div>
 
         <Tabs defaultValue="alerts" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-6">
+          <TabsList className="grid w-full grid-cols-7">
             <TabsTrigger value="alerts">Alertas IA</TabsTrigger>
             <TabsTrigger value="comparative">Comparativo</TabsTrigger>
             <TabsTrigger value="predictive">Predictivo</TabsTrigger>
             <TabsTrigger value="bulletin">Boletín</TabsTrigger>
             <TabsTrigger value="international">Internacional</TabsTrigger>
             <TabsTrigger value="models">Modelos</TabsTrigger>
+            <TabsTrigger value="products">Productos</TabsTrigger>
           </TabsList>
 
           <TabsContent value="alerts">
@@ -1241,6 +1226,32 @@ export default function AnalyticsPage() {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+          <TabsContent value="products">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center">
+                  <Package className="w-5 h-5 mr-2" />
+                  Análisis de Productos y Canastas
+                </CardTitle>
+                <CardDescription>Análisis detallado de productos monitoreados y alertas de mercado</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8">
+                  <Package className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">Análisis de Productos</h3>
+                  <p className="text-gray-600 mb-4">
+                    Acceda al módulo completo de análisis de productos y canastas
+                  </p>
+                  <Link href="/analytics/products">
+                    <Button>
+                      <BarChart3 className="w-4 h-4 mr-2" />
+                      Ver Análisis Completo
+                    </Button>
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
-import { Settings, Users, Database, FileText, Shield, Bell, Search, Plus, Edit, Trash2 } from "lucide-react"
+import { Settings, Users, Database, FileText, Shield, Bell, Search, Plus, Edit, Trash2, Package } from 'lucide-react'
 import Link from "next/link"
 
 const users = [
@@ -141,6 +141,18 @@ export default function AdminPage() {
               <h3 className="font-semibold text-gray-900 mb-2">Seguridad</h3>
               <p className="text-sm text-gray-600">Auditoría y logs del sistema</p>
             </CardContent>
+          </Card>
+
+          <Card className="hover:shadow-md transition-shadow cursor-pointer">
+            <Link href="/admin/products">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Package className="w-6 h-6 text-purple-600" />
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">Gestión de Productos</h3>
+                <p className="text-sm text-gray-600">Administrar canastas y productos monitoreados</p>
+              </CardContent>
+            </Link>
           </Card>
         </div>
 
