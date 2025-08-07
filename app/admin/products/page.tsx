@@ -143,7 +143,7 @@ const unidadesMedida = [
 export default function ProductManagementPage() {
   const [selectedTab, setSelectedTab] = useState("canastas")
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCanasta, setSelectedCanasta] = useState("")
+  const [selectedCanasta, setSelectedCanasta] = useState("all")
   const [showProductDialog, setShowProductDialog] = useState(false)
   const [showCanastaDialog, setShowCanastaDialog] = useState(false)
   const [editingProduct, setEditingProduct] = useState(null)
@@ -156,7 +156,7 @@ export default function ProductManagementPage() {
       const matchesSearch = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            producto.categoria1.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            producto.categoria2.toLowerCase().includes(searchTerm.toLowerCase())
-      const matchesCanasta = !selectedCanasta || producto.canasta === selectedCanasta
+      const matchesCanasta = !selectedCanasta || selectedCanasta === "all" || producto.canasta === selectedCanasta
       return matchesSearch && matchesCanasta
     })
     setFilteredProducts(filtered)
@@ -365,7 +365,7 @@ export default function ProductManagementPage() {
                           <SelectValue placeholder="Filtrar por canasta" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="">Todas las canastas</SelectItem>
+                          <SelectItem value="all">Todas las canastas</SelectItem>
                           {canastas.map((canasta) => (
                             <SelectItem key={canasta.id} value={canasta.nombre}>
                               {canasta.nombre}
