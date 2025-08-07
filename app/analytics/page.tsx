@@ -1,9 +1,11 @@
+'use client'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { TrendingUp, TrendingDown, AlertTriangle, BarChart3, LineChart, PieChart, Calendar, Download, Settings, Brain, Globe, Zap, FileText, Target, Activity, Package } from 'lucide-react'
+import { TrendingUp, TrendingDown, AlertTriangle, BarChart3, LineChart, PieChart, Calendar, Download, Settings, Brain, Globe, Zap, FileText, Target, Activity, Package, MapPin, ShoppingBasket, Factory, Users, Scale, DollarSign, Truck, ClipboardCheck, MessageSquareWarning } from 'lucide-react'
 import Link from "next/link"
 
 const priceAlerts = [
@@ -73,6 +75,97 @@ const internationalPrices = [
   { commodity: "Soya", local: 35.2, international: 41.8, differential: -15.8, frequency: "Semanal" },
   { commodity: "Aceite Palma", local: 45.6, international: 52.1, differential: -12.5, frequency: "Mensual" },
 ]
+
+// --- Nuevos datos simulados para los reportes ---
+const distributionChannels = [
+  { name: "Supermercados", product: "Arroz", avgPrice: 32.5, trend: "up", change: 2.1 },
+  { name: "Mercados Locales", product: "Arroz", avgPrice: 30.0, trend: "stable", change: 0.5 },
+  { name: "Pulperías", product: "Arroz", avgPrice: 35.0, trend: "up", change: 3.5 },
+  { name: "Supermercados", product: "Huevos", avgPrice: 43.0, trend: "up", change: 5.0 },
+  { name: "Mercados Locales", product: "Huevos", avgPrice: 41.0, trend: "up", change: 3.0 },
+];
+
+const timePeriodPrices = [
+  { product: "Huevos", period: "Ene-23", price: 30.0, change: 0 },
+  { product: "Huevos", period: "Abr-23", price: 32.5, change: 8.3 },
+  { product: "Huevos", period: "Jul-23", price: 35.0, change: 7.7 },
+  { product: "Huevos", period: "Oct-23", price: 38.0, change: 8.6 },
+  { product: "Huevos", period: "Ene-24", price: 42.5, change: 11.8 },
+];
+
+const annualHistory = [
+  { product: "Arroz", year: 2021, avgPrice: 25.0, change: 0 },
+  { product: "Arroz", year: 2022, avgPrice: 28.0, change: 12.0 },
+  { product: "Arroz", year: 2023, avgPrice: 31.0, change: 10.7 },
+  { product: "Frijoles", year: 2021, avgPrice: 40.0, change: 0 },
+  { product: "Frijoles", year: 2022, avgPrice: 42.0, change: 5.0 },
+  { product: "Frijoles", year: 2023, avgPrice: 45.0, change: 7.1 },
+];
+
+const citizenReports = [
+  { id: 1, product: "Leche (Litro)", location: "Col. Centro, Tegucigalpa", reportedPrice: 32.0, reason: "Escasez en pulpería", date: "2024-01-20", status: "Pendiente" },
+  { id: 2, product: "Pan Molde", location: "Barrio Abajo, San Pedro Sula", reportedPrice: 55.0, reason: "Precio muy alto en supermercado", date: "2024-01-18", status: "Investigando" },
+  { id: 3, product: "Tomate (Libra)", location: "Mercado Zonal Belén, Comayagua", reportedPrice: 15.0, reason: "Calidad baja para el precio", date: "2024-01-15", status: "Resuelto" },
+];
+
+const geoPrices = [
+  { zone: "Zona Norte", product: "Huevos", avgPrice: 41.0, trend: "up" },
+  { zone: "Zona Central", product: "Huevos", avgPrice: 42.5, trend: "up" },
+  { zone: "Zona Sur", product: "Huevos", avgPrice: 40.0, trend: "stable" },
+  { zone: "Zona Occidental", product: "Huevos", avgPrice: 43.5, trend: "up" },
+];
+
+const basketPrices = [
+  { basket: "Canasta Básica Alimentaria", avgPrice: 1247.0, change: 2.3, trend: "up" },
+  { basket: "Útiles Escolares", avgPrice: 500.0, change: -1.2, trend: "down" },
+  { basket: "Medicamentos Básicos", avgPrice: 850.0, change: 0.8, trend: "stable" },
+  { basket: "Materiales de Construcción", avgPrice: 3500.0, change: 4.5, trend: "up" },
+];
+
+const harvestData = [
+  { zone: "Valle de Sula", product: "Maíz", status: "Buena", impact: "↓ 5% en precio", date: "2023-11" },
+  { zone: "El Paraíso", product: "Frijoles", status: "Regular", impact: "↑ 3% en precio", date: "2023-12" },
+  { zone: "Olancho", product: "Arroz", status: "Excelente", impact: "↓ 7% en precio", date: "2024-01" },
+];
+
+const prodConsData = [
+  { product: "Arroz", production: 1000, consumption: 950, balance: "Superávit", unit: "TM" },
+  { product: "Frijoles", production: 700, consumption: 750, balance: "Déficit", unit: "TM" },
+  { product: "Maíz", production: 1500, consumption: 1400, balance: "Superávit", unit: "TM" },
+];
+
+const strategicReserves = [
+  { product: "Arroz", current: 5000, target: 6000, status: "Bajo", unit: "TM", lastUpdate: "2024-01-10" },
+  { product: "Frijoles", current: 3500, target: 3000, status: "Óptimo", unit: "TM", lastUpdate: "2024-01-05" },
+  { product: "Azúcar", current: 2000, target: 2500, status: "Moderado", unit: "TM", lastUpdate: "2024-01-12" },
+];
+
+const productionCosts = [
+  { product: "Maíz", stage: "Siembra", cost: 0.5, unit: "L./lb", details: "Semilla, fertilizante" },
+  { product: "Maíz", stage: "Cosecha", cost: 0.3, unit: "L./lb", details: "Mano de obra, maquinaria" },
+  { product: "Maíz", stage: "Acopio", cost: 0.1, unit: "L./lb", details: "Transporte, almacenamiento" },
+  { product: "Huevos", stage: "Producción", cost: 2.5, unit: "L./unidad", details: "Alimento, sanidad" },
+];
+
+const valueChain = [
+  { product: "Arroz", stage: "Producción", share: 30, profit: 10 },
+  { product: "Arroz", stage: "Procesamiento", share: 20, profit: 8 },
+  { product: "Arroz", stage: "Distribución", share: 25, profit: 7 },
+  { product: "Arroz", stage: "Minorista", share: 25, profit: 15 },
+];
+
+const inspectorMonitoring = [
+  { inspector: "Juan Pérez", zone: "Central", inspections: 120, accuracy: 98.5, alertsReported: 5, lastReport: "2024-01-22" },
+  { inspector: "María González", zone: "Norte", inspections: 150, accuracy: 97.0, alertsReported: 8, lastReport: "2024-01-21" },
+  { inspector: "Carlos Rivera", zone: "Sur", inspections: 90, accuracy: 99.0, alertsReported: 2, lastReport: "2024-01-20" },
+];
+
+const complaints = [
+  { id: 1, type: "Precio Elevado", product: "Pan Molde", reporter: "Ciudadano A", status: "En Proceso", date: "2024-01-22", details: "Reporte de precio de L.55.00 en Supermercado X" },
+  { id: 2, type: "Producto No Disponible", product: "Leche", reporter: "Ciudadano B", status: "Resuelto", date: "2024-01-20", details: "No se encontró marca habitual en Pulpería Y" },
+  { id: 3, type: "Calidad Baja", product: "Tomate", reporter: "Ciudadano C", status: "Pendiente", date: "2024-01-18", details: "Tomates en mal estado a precio regular en Mercado Z" },
+];
+
 
 export default function AnalyticsPage() {
   return (
@@ -145,8 +238,12 @@ export default function AnalyticsPage() {
         </div>
 
         <Tabs defaultValue="alerts" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-7">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-10">
             <TabsTrigger value="alerts">Alertas IA</TabsTrigger>
+            <TabsTrigger value="precios">Precios</TabsTrigger>
+            <TabsTrigger value="mercado">Mercado y Suministro</TabsTrigger>
+            <TabsTrigger value="cadena-valor">Cadena de Valor</TabsTrigger>
+            <TabsTrigger value="operaciones">Operaciones</TabsTrigger>
             <TabsTrigger value="comparative">Comparativo</TabsTrigger>
             <TabsTrigger value="predictive">Predictivo</TabsTrigger>
             <TabsTrigger value="bulletin">Boletín</TabsTrigger>
@@ -264,6 +361,53 @@ export default function AnalyticsPage() {
                     </div>
                   </CardContent>
                 </Card>
+
+                {/* Precios elevados reportados por ciudadanos */}
+                <Card className="mt-8">
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <MessageSquareWarning className="w-5 h-5 mr-2" />
+                      Precios Elevados Reportados por Ciudadanos
+                    </CardTitle>
+                    <CardDescription>Reportes directos de consumidores sobre precios anómalos</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      {citizenReports.map((report) => (
+                        <div key={report.id} className="p-4 border rounded-lg bg-blue-50 border-blue-200">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="flex-1">
+                              <h4 className="font-semibold text-gray-900">{report.product}</h4>
+                              <p className="text-sm text-gray-600 mb-2">{report.location}</p>
+                              <div className="grid grid-cols-2 gap-2 text-sm">
+                                <div>
+                                  <span className="text-gray-600">Precio Reportado:</span>
+                                  <div className="font-medium">L. {report.reportedPrice.toFixed(2)}</div>
+                                </div>
+                                <div>
+                                  <span className="text-gray-600">Razón:</span>
+                                  <div className="font-medium">{report.reason}</div>
+                                </div>
+                              </div>
+                              <div className="mt-2 text-xs text-gray-500">Fecha: {report.date}</div>
+                            </div>
+                            <Badge variant={report.status === "Pendiente" ? "destructive" : report.status === "Investigando" ? "default" : "secondary"}>
+                              {report.status}
+                            </Badge>
+                          </div>
+                          <div className="flex space-x-2">
+                            <Button size="sm" variant="outline">
+                              Ver Detalles
+                            </Button>
+                            <Button size="sm">
+                              Investigar
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Sidebar */}
@@ -357,6 +501,504 @@ export default function AnalyticsPage() {
                   </CardContent>
                 </Card>
               </div>
+            </div>
+          </TabsContent>
+
+          {/* New Tab: Precios */}
+          <TabsContent value="precios">
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <DollarSign className="w-5 h-5 mr-2" />
+                    Reportes de Precios y Tendencias
+                  </CardTitle>
+                  <CardDescription>Análisis detallado de precios por diferentes criterios</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-8">
+                  {/* Precios y tendencias de precios por canal de distribución */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Truck className="w-4 h-4 mr-2" />
+                      Precios por Canal de Distribución
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {distributionChannels.map((channel, index) => (
+                        <div key={index} className="p-4 border rounded-lg bg-gray-50">
+                          <h4 className="font-medium text-gray-900">{channel.name}</h4>
+                          <p className="text-sm text-gray-600">{channel.product}</p>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-xl font-bold">L. {channel.avgPrice.toFixed(2)}</span>
+                            <Badge variant={channel.trend === "up" ? "destructive" : channel.trend === "down" ? "default" : "secondary"}>
+                              {channel.trend === "up" ? <TrendingUp className="w-3 h-3 mr-1" /> : channel.trend === "down" ? <TrendingDown className="w-3 h-3 mr-1" /> : null}
+                              {channel.change > 0 ? '+' : ''}{channel.change.toFixed(1)}%
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <BarChart3 className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Precios por Canal</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Precios y tendencias de precios por período de tiempo */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Precios por Período de Tiempo
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Producto</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Período</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Precio Promedio</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Variación</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {timePeriodPrices.map((item, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.product}</td>
+                              <td className="py-2 px-4">{item.period}</td>
+                              <td className="py-2 px-4">L. {item.price.toFixed(2)}</td>
+                              <td className="py-2 px-4">
+                                <span className={item.change > 0 ? "text-red-600" : "text-green-600"}>
+                                  {item.change > 0 ? '+' : ''}{item.change.toFixed(1)}%
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <LineChart className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Tendencia de Precios</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Históricos anuales */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Históricos Anuales
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Producto</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Año</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Precio Promedio Anual</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Variación Anual</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {annualHistory.map((item, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.product}</td>
+                              <td className="py-2 px-4">{item.year}</td>
+                              <td className="py-2 px-4">L. {item.avgPrice.toFixed(2)}</td>
+                              <td className="py-2 px-4">
+                                <span className={item.change > 0 ? "text-red-600" : "text-green-600"}>
+                                  {item.change > 0 ? '+' : ''}{item.change.toFixed(1)}%
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <BarChart3 className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico Histórico Anual</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Comportamiento y variación de precios */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Activity className="w-4 h-4 mr-2" />
+                      Comportamiento y Variación de Precios
+                    </h3>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <div className="text-center text-gray-500">
+                        <LineChart className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Volatilidad de Precios</p>
+                        <p className="text-sm">Análisis de desviación estándar y rango</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* New Tab: Mercado y Suministro */}
+          <TabsContent value="mercado">
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Globe className="w-5 h-5 mr-2" />
+                    Reportes de Mercado y Suministro
+                  </CardTitle>
+                  <CardDescription>Análisis de factores externos que influyen en los precios</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-8">
+                  {/* Por zona geográfica */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      Precios por Zona Geográfica
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {geoPrices.map((item, index) => (
+                        <div key={index} className="p-4 border rounded-lg bg-gray-50">
+                          <h4 className="font-medium text-gray-900">{item.zone}</h4>
+                          <p className="text-sm text-gray-600">{item.product}</p>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-xl font-bold">L. {item.avgPrice.toFixed(2)}</span>
+                            <Badge variant={item.trend === "up" ? "destructive" : item.trend === "down" ? "default" : "secondary"}>
+                              {item.trend === "up" ? <TrendingUp className="w-3 h-3 mr-1" /> : item.trend === "down" ? <TrendingDown className="w-3 h-3 mr-1" /> : null}
+                              {item.trend === "up" ? "Alza" : item.trend === "down" ? "Baja" : "Estable"}
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <MapPin className="w-12 h-12 mx-auto mb-4" />
+                        <p>Mapa de Precios por Zona</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Por tipo de canasta */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <ShoppingBasket className="w-4 h-4 mr-2" />
+                      Precios por Tipo de Canasta
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {basketPrices.map((item, index) => (
+                        <div key={index} className="p-4 border rounded-lg bg-gray-50">
+                          <h4 className="font-medium text-gray-900">{item.basket}</h4>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-xl font-bold">L. {item.avgPrice.toFixed(2)}</span>
+                            <Badge variant={item.trend === "up" ? "destructive" : item.trend === "down" ? "default" : "secondary"}>
+                              {item.trend === "up" ? <TrendingUp className="w-3 h-3 mr-1" /> : item.trend === "down" ? <TrendingDown className="w-3 h-3 mr-1" /> : null}
+                              {item.change > 0 ? '+' : ''}{item.change.toFixed(1)}%
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <PieChart className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Precios por Canasta</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Tendencias internacionales */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Globe className="w-4 h-4 mr-2" />
+                      Tendencias Internacionales
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Commodity</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Precio Local</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Precio Intl.</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Diferencial</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {internationalPrices.map((item, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.commodity}</td>
+                              <td className="py-2 px-4">L. {item.local.toFixed(2)}</td>
+                              <td className="py-2 px-4">L. {item.international.toFixed(2)}</td>
+                              <td className="py-2 px-4">
+                                <span className={item.differential < 0 ? "text-green-600" : "text-red-600"}>
+                                  {item.differential.toFixed(1)}%
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <LineChart className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico Comparativo Internacional</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cosechas por zonas */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Cosechas por Zonas
+                    </h3>
+                    <div className="space-y-3">
+                      {harvestData.map((item, index) => (
+                        <div key={index} className="p-4 border rounded-lg bg-gray-50">
+                          <h4 className="font-medium text-gray-900">{item.product} - {item.zone}</h4>
+                          <p className="text-sm text-gray-600">Estado: {item.status}</p>
+                          <p className="text-sm text-gray-600">Impacto estimado: {item.impact}</p>
+                          <p className="text-xs text-gray-500">Última cosecha: {item.date}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Producción y consumo */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Factory className="w-4 h-4 mr-2" />
+                      Producción y Consumo
+                    </h3>
+                    <div className="space-y-3">
+                      {prodConsData.map((item, index) => (
+                        <div key={index} className="p-4 border rounded-lg bg-gray-50">
+                          <h4 className="font-medium text-gray-900">{item.product}</h4>
+                          <p className="text-sm text-gray-600">Producción: {item.production} {item.unit}</p>
+                          <p className="text-sm text-gray-600">Consumo: {item.consumption} {item.unit}</p>
+                          <p className="text-sm font-semibold">Balance: {item.balance}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Reserva estratégica */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Package className="w-4 h-4 mr-2" />
+                      Reserva Estratégica
+                    </h3>
+                    <div className="space-y-3">
+                      {strategicReserves.map((item, index) => (
+                        <div key={index} className="p-4 border rounded-lg bg-gray-50">
+                          <h4 className="font-medium text-gray-900">{item.product}</h4>
+                          <p className="text-sm text-gray-600">Actual: {item.current} {item.unit}</p>
+                          <p className="text-sm text-gray-600">Meta: {item.target} {item.unit}</p>
+                          <p className="text-sm font-semibold">Estado: {item.status}</p>
+                          <p className="text-xs text-gray-500">Última actualización: {item.lastUpdate}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* New Tab: Cadena de Valor */}
+          <TabsContent value="cadena-valor">
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <Scale className="w-5 h-5 mr-2" />
+                    Reportes de Cadena de Valor
+                  </CardTitle>
+                  <CardDescription>Análisis de costos y distribución de ganancias a lo largo de la cadena</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-8">
+                  {/* Costos de producción */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <DollarSign className="w-4 h-4 mr-2" />
+                      Costos de Producción
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Producto</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Etapa</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Costo Unitario</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Detalles</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {productionCosts.map((item, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.product}</td>
+                              <td className="py-2 px-4">{item.stage}</td>
+                              <td className="py-2 px-4">L. {item.cost.toFixed(2)}/{item.unit}</td>
+                              <td className="py-2 px-4 text-sm text-gray-600">{item.details}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <BarChart3 className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Costos por Etapa</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Cadena de valor (distribución de costos y ganancias) */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Truck className="w-4 h-4 mr-2" />
+                      Cadena de Valor
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Producto</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Etapa</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Participación (%)</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Ganancia (%)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {valueChain.map((item, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.product}</td>
+                              <td className="py-2 px-4">{item.stage}</td>
+                              <td className="py-2 px-4">{item.share}%</td>
+                              <td className="py-2 px-4">{item.profit}%</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <PieChart className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Participación en la Cadena de Valor</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+
+          {/* New Tab: Operaciones y Denuncias */}
+          <TabsContent value="operaciones">
+            <div className="space-y-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center">
+                    <ClipboardCheck className="w-5 h-5 mr-2" />
+                    Reportes de Operaciones y Denuncias
+                  </CardTitle>
+                  <CardDescription>Monitoreo de la actividad de inspectores y seguimiento de denuncias</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-8">
+                  {/* Monitoreo de precios por inspectores */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <Users className="w-4 h-4 mr-2" />
+                      Monitoreo de Precios por Inspectores
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Inspector</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Zona</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Inspecciones</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Precisión (%)</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Alertas Reportadas</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Último Reporte</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {inspectorMonitoring.map((item, index) => (
+                            <tr key={index} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.inspector}</td>
+                              <td className="py-2 px-4">{item.zone}</td>
+                              <td className="py-2 px-4">{item.inspections}</td>
+                              <td className="py-2 px-4">{item.accuracy.toFixed(1)}%</td>
+                              <td className="py-2 px-4">{item.alertsReported}</td>
+                              <td className="py-2 px-4">{item.lastReport}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <BarChart3 className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Actividad de Inspectores</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Denuncias y seguimiento de procesos */}
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+                      <MessageSquareWarning className="w-4 h-4 mr-2" />
+                      Denuncias y Seguimiento de Procesos
+                    </h3>
+                    <div className="overflow-x-auto">
+                      <table className="w-full">
+                        <thead>
+                          <tr className="border-b">
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">ID</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Tipo</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Producto</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Reportado por</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Estado</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Fecha</th>
+                            <th className="text-left py-2 px-4 font-medium text-gray-900">Detalles</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {complaints.map((item) => (
+                            <tr key={item.id} className="border-b hover:bg-gray-50">
+                              <td className="py-2 px-4">{item.id}</td>
+                              <td className="py-2 px-4">{item.type}</td>
+                              <td className="py-2 px-4">{item.product}</td>
+                              <td className="py-2 px-4">{item.reporter}</td>
+                              <td className="py-2 px-4">
+                                <Badge variant={item.status === "Pendiente" ? "destructive" : item.status === "En Proceso" ? "default" : "secondary"}>
+                                  {item.status}
+                                </Badge>
+                              </td>
+                              <td className="py-2 px-4">{item.date}</td>
+                              <td className="py-2 px-4 text-sm text-gray-600">{item.details}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center mt-4">
+                      <div className="text-center text-gray-500">
+                        <ClipboardCheck className="w-12 h-12 mx-auto mb-4" />
+                        <p>Gráfico de Estado de Denuncias</p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </TabsContent>
 
