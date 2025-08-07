@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BarChart3, TrendingUp, TrendingDown, AlertTriangle, Package, Search, Filter, Download, Eye, Activity, Target, Zap } from 'lucide-react'
 import Link from "next/link"
 
-// Datos simulados (reutilizando del módulo admin)
+// Datos simulados
 const productos = [
   {
     id: 1,
@@ -95,7 +95,7 @@ const canastas = [
 
 export default function AnalyticsProductsPage() {
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCanasta, setSelectedCanasta] = useState("")
+  const [selectedCanasta, setSelectedCanasta] = useState("all")
   const [selectedTab, setSelectedTab] = useState("overview")
   const [filteredProducts, setFilteredProducts] = useState(productos)
 
@@ -105,7 +105,7 @@ export default function AnalyticsProductsPage() {
       const matchesSearch = producto.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            producto.categoria1.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            producto.categoria2.toLowerCase().includes(searchTerm.toLowerCase())
-      const matchesCanasta = !selectedCanasta || producto.canasta === selectedCanasta
+      const matchesCanasta = selectedCanasta === "all" || producto.canasta === selectedCanasta
       return matchesSearch && matchesCanasta
     })
     setFilteredProducts(filtered)
@@ -233,7 +233,7 @@ export default function AnalyticsProductsPage() {
                           <SelectValue placeholder="Filtrar por canasta" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="">Todas las canastas</SelectItem>
+                          <SelectItem value="all">Todas las canastas</SelectItem>
                           {canastas.map((canasta) => (
                             <SelectItem key={canasta} value={canasta}>
                               {canasta}
